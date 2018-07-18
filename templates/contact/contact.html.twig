@@ -27,9 +27,12 @@
         {{ form_row(form.email) }}
         {{ form_row(form.subject) }}
         {{ form_row(form.body) }}
-  
+        
+        {{ form_row(form.docFile) }}
+
         {{ form_rest(form) }}
-  
+        
         <input type="submit" value="{{ 'contact.submit'|trans({}, 'contact') }}" />
+  
     </form>
 {% endblock %}
