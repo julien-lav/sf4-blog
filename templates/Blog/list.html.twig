@@ -1,0 +1,15 @@
+{# templates/Blog/show.html.twig #}
+{% extends 'layout.html.twig' %}
+ 
+
+ 
+{% block body %}
+   
+{% for article in blogs %}
+
+        <p>
+            {{ article.title }}  
+        </p>
+        
+{% endfor %}
+{% endblock %}
