@@ -4,10 +4,7 @@
 namespace App\Controller;
   
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-
 use Symfony\Component\Routing\Annotation\Route;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
   
@@ -66,7 +63,10 @@ class BlogController extends Controller
         $em = $this->getDoctrine()->getManager();
   
         $blogs = $em->getRepository('App:Blog')->findAll();
-  
+        
+        $userManager = $this->get('fos_user.user_manager');
+        $users = $userManager->findUsers();
+
         if (!$blogs) {
         throw $this->createNotFoundException('Unable to find articles!!!');
         }
@@ -75,7 +75,8 @@ class BlogController extends Controller
         //               ->getCommentsForBlog($blog->getId());
   
         return $this->render('blog/list.html.twig', array(
-            'blogs'      => $blogs
+            'blogs'      => $blogs,
+            'users'      => $users           
             //,
             //'comments'  => $comments
         ));              

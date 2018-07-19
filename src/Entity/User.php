@@ -21,8 +21,7 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
- 
- 
+  
     /**
      * Get id
      *
@@ -32,4 +31,5 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
 }

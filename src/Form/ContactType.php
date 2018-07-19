@@ -18,8 +18,7 @@ class ContactType extends AbstractType
         $builder->add('email',EmailType::class);
         $builder->add('subject',TextType::class);
         $builder->add('body',TextareaType::class);
-        $builder->add('docFile', FileType::class);
-
+        $builder->add('docFile', FileType::class,  array('label' => 'My files !!!!'));
     }
   
     public function getBlockPrefix()

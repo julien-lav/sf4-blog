@@ -1,15 +1,23 @@
 {# templates/Blog/show.html.twig #}
 {% extends 'layout.html.twig' %}
  
-
- 
 {% block body %}
    
 {% for article in blogs %}
-
         <p>
             {{ article.title }}  
-        </p>
-        
+        </p>     
 {% endfor %}
+
+	<p>List of authors</p>
+
+	{% for user in users %}
+	        <p>
+	            {{ user.username }} // {{ user.email }}
+	            <br />
+	             He's last log was : <br />
+		    	{{ app.user.lastLogin|date('Y-m-d H:i:s') }}
+	        </p>
+	        
+	{% endfor %}
 {% endblock %}
