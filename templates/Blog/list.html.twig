@@ -16,7 +16,10 @@
 	            {{ user.username }} // {{ user.email }}
 	            <br />
 	             He's last log was : <br />
-		    	{{ app.user.lastLogin|date('Y-m-d H:i:s') }}
+	            {% if (user.lastLogin != null) %}
+		    		{{ user.lastLogin|date('Y-m-d H:i:s') }}
+				{% endif %}
+
 	        </p>
 	        
 	{% endfor %}
