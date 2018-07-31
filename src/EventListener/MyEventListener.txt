@@ -1,0 +1,23 @@
+<?php 
+
+namespace App\EventListener;
+
+use Symfony\Component\EventDispatcher\Event;
+use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
+use App\EventListener\MyEventSubscriber;
+
+
+class MyEventListener
+{
+    public function postUpdate(LifecycleEventArgs $args)
+    {
+	    $entity = $args->getObject();
+	    $entityManager = $args->getObjectManager();
+
+	    // perhaps you only want to act on some "Product" entity
+	    if ($entity instanceof Blog) {
+	        die('ENFIN !!!');
+	    }
+    }
+ 
+}

@@ -25,6 +25,5 @@ class LocaleSwitchController extends AbstractController {
     private function switchLanguage($locale) {
         $this->get('session')->set('_locale', $locale);
         return $this->redirect($this->generateUrl('page'));
-    }
-      
+    }      
 }

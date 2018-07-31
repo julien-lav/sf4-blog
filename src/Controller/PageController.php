@@ -2,6 +2,14 @@
 
 namespace App\Controller;
   
+# we need the `use` statement for our event
+use App\Event\FunEvent;
+# where some of the constants dwells
+use App\Event\Events;
+
+# we also need to `use` something implementing EventDispatcherInterface
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\Contact;
@@ -14,9 +22,16 @@ class PageController extends Controller
     /**
      * @Route("/", name="page")
      */
-    public function index()
+    public function index(Request $request, EventDispatcherInterface $eventDispatcher)
     {
-        return $this->render('page/index.html.twig');
+        $eventDispatcher->dispatch(
+            Events::SOME_EVENT_NAME,
+            new FunEvent()
+        );      
+
+        return $this->render('page/index.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
     }
   
     /**

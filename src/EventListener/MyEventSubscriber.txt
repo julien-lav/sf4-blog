@@ -1,0 +1,35 @@
+<?php
+
+namespace App\EventListener;
+
+
+use Symfony\Component\EventDispatcher\Event;
+// use Symfony\Component\MyEventSubscriber\EventSubscriber;
+
+use Doctrine\ORM\Events;
+use Doctrine\Common\EventSubscriber;
+use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
+use App\EventListener\MyEventListener;
+
+
+class MyEventSubscriber implements EventSubscriber
+{
+    
+    public function getSubscribedEvents()
+    {
+        return array(Events::postUpdate);
+    }
+
+    public function postUpdate(LifecycleEventArgs $args)
+    {
+        $entity = $args->getObject();
+        $entityManager = $args->getObjectManager();
+
+        // perhaps you only want to act on some "Blog" entity
+        if ($entity instanceof Blog) {
+            die('slk');
+        // do something with the Blog
+        }
+    }
+    
+}

@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BlogRepository")
  * @ORM\Table(name="blog")
@@ -75,7 +74,12 @@ class Blog
        $this->setUpdated(new \DateTime());
     }
 
-    
+    public function preUpdate(PreUpdateEventArgs $event)
+    {
+        if ($event->hasChangedField('title')) {
+            // Do something when the username is changed.
+        }
+    }
 
     public function getId()
     {
