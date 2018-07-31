@@ -23,7 +23,7 @@ public function testCheckPassword(){
             '/register/' 
             /*
             [FR]
-            C'teu piege sans le / de fin (à register), 
+            C'teu piege !! sans le / de fin (de register), 
             impossible de faire fonctionner les testes, 
 			j'ai bien mis 20 minutes a trouver, ça 
 			Aussi avec fos_user, pour faire passer les testes
@@ -40,7 +40,7 @@ public function testCheckPassword(){
         $form['fos_user_registration_form[username]'] = 'usernametest';
        
         $form['fos_user_registration_form[plainPassword][first]'] = 'pass1';
-        $form['fos_user_registration_form[plainPassword][second]'] = 'pass1';
+        $form['fos_user_registration_form[plainPassword][second]'] = 'pass2';
 
         $crawler = $client->submit($form);
 
@@ -48,7 +48,7 @@ public function testCheckPassword(){
 
         //var_dump($client->getResponse()->getContent());
 
-        $this->assertEquals(0,
+        $this->assertEquals(1,
             $crawler->filter('li:contains("The entered passwords don\'t match.")')->count()
             // add your message
         );
